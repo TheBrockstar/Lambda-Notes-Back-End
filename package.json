@@ -5,6 +5,10 @@
   "repository": "https://github.com/TheBrockstar/Lambda-Notes-Back-End.git",
   "author": "Brock Maraee Rohloff <00AgentB@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "server": "nodemon index.js",
+    "test": "jest --watch --verbose"
+  },
   "dependencies": {
     "cors": "^2.8.4",
     "helmet": "^3.14.0",
@@ -16,5 +20,8 @@
     "jest": "^23.6.0",
     "nodemon": "^1.18.5",
     "supertest": "^3.3.0"
-  }
+  },
+  "jest": {
+		"testEnvironment": "node"
+	}
 }
