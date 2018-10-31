@@ -10,6 +10,7 @@ const cors = require('cors');
 const server = express();
 
 /// ---- Instantiate Database ----
+const port = process.env.PORT || 7777;
 const dbEngine = process.env.DB || 'development';
 const notesDb = knex(knexConfig[dbEngine]);
 
@@ -35,6 +36,10 @@ const noNotesWereDeleted = { errorMessage: "No Notes were deleted" }
 server.get('/yourethetestaround/2819', ( request, response ) => {
     response.status(200).json("Nothings Gonna Ever Keep You Down!")
 });
+
+server.get('/', (req, res) => {
+    res.send(`Api running on port: ${port}`);
+  });
 
 /// ---- Get All Notes Endpoint ----
 server.get('/api/notes', (request, response) => {
