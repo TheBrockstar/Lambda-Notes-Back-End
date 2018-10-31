@@ -1,7 +1,10 @@
+// -- Loads .env Configuration --
+require('dotenv').config();
+
 // --- Bring In Server ---
 const server = require('./data/api/server');
 
 // --- Server Port ---
-const port = 7777;
+const port = process.env.PORT || 7777;;
 
-server.listen(port, () => {console.log(`-- Server active on port ${port} --`)})
+const instance = server.listen(port, () => {console.log(`\n-- Server active on port ${instance.address().port} --\n`)})

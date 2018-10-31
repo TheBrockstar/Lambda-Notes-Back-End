@@ -10,7 +10,8 @@ const cors = require('cors');
 const server = express();
 
 /// ---- Instantiate Database ----
-const notesDb = knex(knexConfig.development);
+const dbEngine = process.env.DB || 'development';
+const notesDb = knex(knexConfig[dbEngine]);
 
 /// ---- Connect Middleware to Server ----
 server.use(express.json(), cors(), morgan('combined'), helmet());
