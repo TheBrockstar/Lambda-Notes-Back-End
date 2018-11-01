@@ -1,10 +1,12 @@
 require('dotenv').config();
+
 const localPg = {
-  host: 'localhost',
-  database: 'notes',
-  user: 'theBrockstar',
-  password: 'thisIsNotSecure',
+  host: 'localhost/postgres',
+  database: 'postgres',
+  user: 'postgres',
+  password: '1234',
 };
+
 const dbConnection = process.env.DATABASE_URL || localPg;
 
 module.exports = {

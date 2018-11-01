@@ -47,7 +47,7 @@ server.get('/api/notes', (request, response) => {
     // Database Helper Promise Methods
     notesDb('notes')
     .then( notes => response.status(200).json(notes))
-    .catch(() => response.status(500).json(unableToGetNotes))
+    .catch(error => response.status(500).json(error))
 });
 
 
@@ -87,16 +87,13 @@ server.post('/api/notes', (request, response) => {
     const newNote = { title, textBody, tags, user };
 
     // Database Promise Methods
-    notesDb.insert(newNote)
+    notesDb.insert(newNote, '_id')
     .into('notes')
     .then( created => {
         if ( !created || created.length < 1 ) {
             return response.status(400).json(unableToCreateNote)
         }
-        notesDb('notes')
-        .max('_id')
-        .then( id => response.status(200).json(id[0]["max(`_id`)"]))
-        .catch(() => response.status(500).json(unableToGetNotes))
+        response.status(200).json(created[0])
     })
     .catch( error => response.status(500).json(unableToCreateNote + error) );
 })
