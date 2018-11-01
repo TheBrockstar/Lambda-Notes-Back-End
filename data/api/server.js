@@ -93,7 +93,10 @@ server.post('/api/notes', (request, response) => {
         if ( !created || created.length < 1 ) {
             return response.status(400).json(unableToCreateNote)
         }
-        response.status(201).json(created[0]);
+        notesDb('notes')
+        .max('_id')
+        .then( id => response.status(200).json(id[0]["max(`_id`)"]))
+        .catch(() => response.status(500).json(unableToGetNotes))
     })
     .catch( error => response.status(500).json(unableToCreateNote + error) );
 })
@@ -116,9 +119,7 @@ server.delete('/api/notes/:id', (request, response) => {
         }
 
         response.json(deleted)
-    }
-
-    )
+    })
     .catch(error => response.status(500).json(unableToDeleteNote))
 });
 
