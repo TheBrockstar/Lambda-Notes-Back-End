@@ -1,2 +1,3 @@
-## Trello
-https://trello.com/b/GoChzRog/backend-lambda-notes-brock-rohloff
+Deployed at: https://brocknotes.herokuapp.com/api/
+
+Back End Repository: https://github.com/TheBrockstar/Lambda-Notes-Front-End
